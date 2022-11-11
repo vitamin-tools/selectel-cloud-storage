@@ -110,7 +110,7 @@ class ApiClient implements ApiClientContract
      */
     public function storageUrl()
     {
-        return $this->storageUrl;
+        return $this->storageUrl ?? '';
     }
 
     /**
