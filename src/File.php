@@ -336,10 +336,8 @@ class File implements FileContract, JsonSerializable
 
     /**
      * JSON representation of file.
-     *
-     * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return [
             'name' => $this->name(),

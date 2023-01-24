@@ -70,7 +70,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
@@ -185,10 +185,8 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
 
     /**
      * JSON representation of collection.
-     *
-     * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): mixed
     {
         return $this->items;
     }

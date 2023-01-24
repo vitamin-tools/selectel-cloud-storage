@@ -39,7 +39,7 @@ class ApiClient implements ApiClientContract
      *
      * @var string
      */
-    protected $storageUrl;
+    protected $storageUrl = '';
 
     /**
      * HTTP Client.

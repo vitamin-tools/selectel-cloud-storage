@@ -32,7 +32,7 @@ interface ContainerContract
      *
      * @return int
      */
-    public function filesCount();
+    public function filesCount(): int;
 
     /**
      * Container size in bytes.
