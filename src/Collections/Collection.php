@@ -48,7 +48,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return bool
      */
-    public function has($key)
+    public function has($key): bool
     {
         return isset($this->items[$key]);
     }
@@ -60,7 +60,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return mixed|null
      */
-    public function get($key)
+    public function get($key): mixed
     {
         return $this->has($key) ? $this->items[$key] : null;
     }
@@ -82,7 +82,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         return $this->has($offset);
     }
@@ -93,7 +93,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value):void
     {
         if (is_null($offset)) {
             $this->items[] = $value;
@@ -112,9 +112,9 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return mixed|null
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
-        return isset($this->items[$offset]) ? $this->items[$offset] : null;
+        return $this->items[$offset] ?? null;
     }
 
     /**
@@ -122,7 +122,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->items[$offset]);
 
@@ -132,7 +132,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
     /**
      * Rewinds iterator back to first position.
      */
-    public function rewind()
+    public function rewind():void
     {
         $this->position = 0;
     }
@@ -142,11 +142,11 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return mixed|null
      */
-    public function current()
+    public function current():mixed
     {
         $currentKey = $this->keys[$this->position];
 
-        return isset($this->items[$currentKey]) ? $this->items[$currentKey] : null;
+        return $this->items[$currentKey] ?? null;
     }
 
     /**
@@ -154,7 +154,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return mixed
      */
-    public function key()
+    public function key():mixed
     {
         return $this->keys[$this->position];
     }
@@ -162,7 +162,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
     /**
      * Increments iterator position.
      */
-    public function next()
+    public function next():void
     {
         $this->position++;
     }
@@ -172,7 +172,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
      *
      * @return bool
      */
-    public function valid()
+    public function valid():bool
     {
         if (!isset($this->keys[$this->position])) {
             return false;
@@ -186,7 +186,7 @@ class Collection implements CollectionContract, ArrayAccess, Countable, Iterator
     /**
      * JSON representation of collection.
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return $this->items;
     }
